@@ -2,6 +2,10 @@
 python3 ~/tools/Sublist3r/sublist3r.py -d $1 -o $1.txt
 cat /home/akshar/Desktop/$1.txt >> ~/Desktop/tmp.txt
 
+python3 ~/tools/OneForAll/oneforall.py --target $1 run
+cat ~/tools/OneForAll/results/$1* | cut -f 7 -d ',' > ~/Desktop/tmp.txt
+
+
 echo "sub done"
 
 curl "https://dns.bufferover.run/dns?q=" | jq '.FDNS_A' | grep "," | cut -f 2 -d ',' | sed "s/\"//" >> ~/Desktop/tmp.txt
